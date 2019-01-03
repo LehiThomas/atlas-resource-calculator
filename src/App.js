@@ -1,25 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Table from "./components/Table/Table";
+import DataTable from "./components/DataTable/DataTable";
+import Dropdown from "./components/Dropdown/Dropdown";
+
+// import data from './data';
 
 class App extends Component {
   render() {
+    const headings = [
+      'Fiber',
+      'Thatch',
+      'Wood',
+      'Metal',
+      'Hide',
+      'Coal',
+    ];
+
+    const rows = [
+      [
+        28,
+        40,
+        55,
+        12,
+        0,
+        0,
+      ],
+      [
+        28,
+        40,
+        55,
+        12,
+        0,
+        0,
+      ],
+      [
+        28,
+        40,
+        55,
+        12,
+        0,
+        0,
+      ],
+      [
+        28,
+        40,
+        55,
+        12,
+        0,
+        0,
+      ],
+    ];
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h2>Atlas Shipwright's Resource Calculator!</h2>
         </header>
+        <Dropdown />
+        <DataTable headings={headings} rows={rows} x={6} y={8}/>        
       </div>
     );
   }
