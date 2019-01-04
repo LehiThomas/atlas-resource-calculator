@@ -1,0 +1,329 @@
+[
+  {
+    "id": "GALLEON",
+    "type": "SHIP",
+    "name": "Galleon",
+    "shipyard": "largeShipyard",
+    "masts": 6,
+    "sailUnits": 16,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 52,
+      "type": "large"
+    },
+    "decks": {
+      "quantity": 6,
+      "type": "large"
+    },
+    "planks": {
+      "quantity": 74,
+      "type": "large"
+    },
+    "resources": {
+      "fiber": 2560,
+      "metal": 680,
+      "thatch": 5600,
+      "wood": 4200
+    }
+  },
+  {
+    "id": "BRIGANTINE",
+    "type": "SHIP",
+    "name": "Brigantine",
+    "shipyard": "largeShipyard",
+    "masts": 4,
+    "sailUnits": 8.6,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 12,
+      "type": "medium"
+    },
+    "decks": {
+      "quantity": 3,
+      "type": "medium"
+    },
+    "planks": {
+      "quantity": 40,
+      "type": "medium"
+    },
+    "resources": {
+      "fiber": 1080,
+      "metal": 160,
+      "thatch": 2160,
+      "wood": 1400
+    }
+  },
+  {
+    "id": "SCHOONER",
+    "type": "SHIP",
+    "name": "Schooner",
+    "shipyard": "smallShipyard",
+    "masts": 3,
+    "sailUnits": 4,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 10,
+      "type": "medium"
+    },
+    "decks": {
+      "quantity": 23,
+      "type": "medium"
+    },
+    "planks": {
+      "quantity": 28,
+      "type": "medium"
+    },
+    "resources": {
+      "fiber": 380,
+      "metal": 48,
+      "thatch": 640,
+      "wood": 440
+    }
+  },
+  {
+    "id": "SLOOP",
+    "type": "SHIP",
+    "name": "Sloop",
+    "shipyard": "smallShipyard",
+    "masts": 2,
+    "sailUnits": 2,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 0,
+      "type": "none"
+    },
+    "decks": {
+      "quantity": 1,
+      "type": "small"
+    },
+    "planks": {
+      "quantity": 12,
+      "type": "small"
+    },
+    "resources": {
+      "fiber": 120,
+      "metal": 12,
+      "thatch": 220,
+      "wood": 140
+    }
+  },
+  {
+    "id": "RAFT",
+    "type": "SHIP",
+    "name": "Raft",
+    "shipyard": "tinyShipyard",
+    "masts": 1,
+    "sailUnits": 0,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 0,
+      "type": "none"
+    },
+    "decks": {
+      "quantity": 0,
+      "type": "small"
+    },
+    "planks": {
+      "quantity": 0,
+      "type": "small"
+    },
+    "resources": {
+      "fiber": 125,
+      "hide": 60,
+      "metal": 0,
+      "thatch": 0,
+      "wood": 250
+    }
+  },
+  {
+    "id": "DINGHY",
+    "type": "SHIP",
+    "name": "Dinghy",
+    "shipyard": "tinyShipyard",
+    "masts": 0,
+    "sailUnits": 0,
+    "ceilings": 0,
+    "cannonPorts": {
+      "quantity": 0,
+      "type": "none"
+    },
+    "decks": {
+      "quantity": 0,
+      "type": "small"
+    },
+    "planks": {
+      "quantity": 0,
+      "type": "small"
+    },
+    "resources": {
+      "fiber": 240,
+      "hide": 0,
+      "metal": 0,
+      "thatch": 220,
+      "wood": 180
+    }
+  },
+  {
+    "id": "TINY_SHIPYARD",
+    "type": "SHIPYARD",
+    "size": "TINY",
+    "resources": {
+      "fiber": 160,
+      "thatch": 280,
+      "wood": 560,
+      "stone": 70
+    }
+  },
+  {
+    "id": "SMALL_SHIPYARD",
+    "type": "SHIPYARD",
+    "size": "SMALL",
+    "resources": {
+      "fiber": 240,
+      "thatch": 420,
+      "wood": 840,
+      "stone": 105
+    }
+  },
+  {
+    "id": "LARGE_SHIPYARD",
+    "type": "SHIPYARD",
+    "size": "LARGE",
+    "resources": {
+      "fiber": 240,
+      "thatch": 420,
+      "wood": 840,
+      "stone": 105
+    }
+  },
+  {
+    "id": "SMALL_DECK",
+    "type": "DECK",
+    "size": "SMALL",
+    "resources": {
+      "fiber": 40,
+      "thatch": 120,
+      "wood": 80
+    }
+  },
+  {
+    "id": "MEDIUM_DECK",
+    "type": "DECK",
+    "size": "MEDIUM",
+    "fiber": 110,
+    "thatch": 200,
+    "wood": 280
+  },
+  {
+    "id": "LARGE_DECK",
+    "type": "DECK",
+    "size": "LARGE",
+    "fiber": 400,
+    "thatch": 650,
+    "wood": 860
+  },
+  {
+    "id": "SMALL_PLANK",
+    "type": "PLANK",
+    "size": "SMALL",
+    "fiber": 80,
+    "thatch": 70,
+    "wood": 80
+  },
+  {
+    "id": "MEDIUM_PLANK",
+    "type": "PLANK",
+    "size": "MEDIUM",
+    "fiber": 480,
+    "metal": 6,
+    "thatch": 420,
+    "wood": 480
+  },
+  {
+    "id": "LARGE_PLANK",
+    "type": "PLANK",
+    "size": "LARGE",
+    "fiber": 1540,
+    "metal": 24,
+    "thatch": 1320,
+    "wood": 1540
+  },
+  {
+    "id": "SMALL_SAIL",
+    "type": "SAIL",
+    "size": "SMALL",
+    "fiber": 120,
+    "hide": 35,
+    "wood": 120
+  },
+  {
+    "id": "MEDIUM_SAIL",
+    "type": "SAIL",
+    "size": "MEDIUM",
+    "fiber": 1080,
+    "hide": 200,
+    "metal": 80,
+    "wood": 512
+  },
+  {
+    "id": "LARGE_SAIL",
+    "type": "SAIL",
+    "size": "LARGE",
+    "fiber": 1080,
+    "hide": 200,
+    "metal": 80,
+    "wood": 512
+  },
+  {
+    "id": "MEDIUM_GUNPORT",
+    "type": "GUNPORT",
+    "size": "MEDIUM",
+    "fiber": 480,
+    "metal": 64,
+    "thatch": 420,
+    "wood": 520
+  },
+  {
+    "id": "LARGE_GUNPORT",
+    "type": "GUNPORT",
+    "size": "LARGE",
+    "fiber": 1540,
+    "metal": 256,
+    "thatch": 1320,
+    "wood": 1540
+  },
+  {
+    "id": "MEDIUM_CANNON",
+    "type": "CANNON",
+    "size": "MEDIUM",
+    "fiber": 14,
+    "hide": 20,
+    "metal": 56,
+    "wood": 42,
+    "coal": 28
+  },
+  {
+    "id": "LARGE_CANNON",
+    "type": "CANNON",
+    "size": "LARGE",
+    "fiber": 24,
+    "hide": 35,
+    "metal": 96,
+    "wood": 78,
+    "coal": 48
+  },
+  {
+    "id": "CEILING",
+    "type": "CEILING",
+    "fiber": 20,
+    "thatch": 60,
+    "wood": 40
+  },
+  {
+    "id": "STEERINGWHEEL",
+    "type": "STEERINGWHEEL",
+    "fiber": 128,
+    "hide": 35,
+    "wood": 120
+  }
+]

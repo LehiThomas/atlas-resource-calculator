@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import '../Dropdown/Dropdown.css';
+import React, { Component } from "react";
+import "../Dropdown/Dropdown.css";
 
 class Dropdown extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = { value: "" };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
+    this.props.setShip(event.target.value);
   }
 
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
-    event.preventDefault();
-  }
+  // handleSubmit(event) {
+  //   alert("Your Ship: " + this.state.value);
+  //   event.preventDefault();
+  // }
 
   render() {
     return (
@@ -33,7 +34,6 @@ class Dropdown extends Component {
             <option value="galleon">Galleon</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
       </form>
     );
   }

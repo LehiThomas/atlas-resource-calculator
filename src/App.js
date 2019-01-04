@@ -8,6 +8,17 @@ import Dropdown from "./components/Dropdown/Dropdown";
 // import data from './data';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ship: ""
+    };
+  }
+
+  setShipFromDropdown = ship => {
+    this.setState({ ship: ship });
+  };
+
   render() {
     const headings = ["", "Fiber", "Thatch", "Wood", "Metal", "Hide", "Coal"];
 
@@ -23,7 +34,8 @@ class App extends Component {
         <header className="App-header">
           <h2>Atlas Shipwright's Resource Calculator!</h2>
         </header>
-        <Dropdown />
+        <Dropdown setShip={this.setShipFromDropdown} />
+        {this.state.ship}
         <DataTable headings={headings} rows={rows} x={6} y={8} />
       </div>
     );

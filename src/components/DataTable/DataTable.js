@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Cell from './Cell';
-import './DataTable.css';
+import * as React from "react";
+import Cell from "./Cell";
+import "./DataTable.css";
 
 export default class DataTable extends React.Component {
   renderHeadingRow = (_cell, cellIndex) => {
@@ -12,29 +12,12 @@ export default class DataTable extends React.Component {
         content={headings[cellIndex]}
         header={true}
       />
-    )
+    );
   };
-
-  // renderRow = (_row, rowIndex) => {
-  //   const {rows} = this.props;
-  //   console.log(rows)
-  //   return (
-  //     <tr key={`row-${rowIndex}`}>
-  //       {rows[rowIndex].map((_cell, cellIndex) => {
-  //         return (
-  //           <Cell
-  //             key={`${rowIndex}-${cellIndex}`}
-  //             content={rows[rowIndex][cellIndex]}
-  //           />
-  //         )
-  //       })}
-  //     </tr>
-  //   )
-  // };
 
   renderRow = (_row, rowIndex) => {
     const { rows } = this.props;
-    console.log(rows)
+    console.log(rows);
     return (
       <tr key={`row-${rowIndex}`}>
         {rows[rowIndex].map((_cell, cellIndex) => {
@@ -43,10 +26,10 @@ export default class DataTable extends React.Component {
               key={`${rowIndex}-${cellIndex}`}
               content={rows[rowIndex][cellIndex]}
             />
-          )
+          );
         })}
       </tr>
-    )
+    );
   };
 
   render() {
@@ -56,9 +39,7 @@ export default class DataTable extends React.Component {
     this.renderRow = this.renderRow.bind(this);
 
     const theadMarkup = (
-      <tr key="heading">
-        {headings.map(this.renderHeadingRow)}
-      </tr>
+      <tr key="heading">{headings.map(this.renderHeadingRow)}</tr>
     );
 
     const tbodyMarkup = rows.map(this.renderRow);
