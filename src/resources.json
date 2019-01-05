@@ -23,7 +23,8 @@
       "fiber": 2560,
       "metal": 680,
       "thatch": 5600,
-      "wood": 4200
+      "wood": 4200,
+      "hide": 0
     }
   },
   {
@@ -50,7 +51,8 @@
       "fiber": 1080,
       "metal": 160,
       "thatch": 2160,
-      "wood": 1400
+      "wood": 1400,
+      "hide": 0
     }
   },
   {
@@ -77,7 +79,8 @@
       "fiber": 380,
       "metal": 48,
       "thatch": 640,
-      "wood": 440
+      "wood": 440,
+      "hide": 0
     }
   },
   {
@@ -104,7 +107,8 @@
       "fiber": 120,
       "metal": 12,
       "thatch": 220,
-      "wood": 140
+      "wood": 140,
+      "hide": 0
     }
   },
   {

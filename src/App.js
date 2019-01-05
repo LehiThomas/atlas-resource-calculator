@@ -4,6 +4,7 @@ import "./App.css";
 import Dropdown from "./components/Dropdown/Dropdown";
 import DataTable from "./components/DataTable/DataTable";
 import Shipyard from "./components/Shipyard/Shipyard";
+import ShipSpine from "./components/ShipSpine/ShipSpine";
 
 import resources from "./resources.json";
 
@@ -42,8 +43,13 @@ class App extends Component {
         </header>
         <Dropdown setShip={this.setShipFromDropdown} />
         {this.state.shipAttributes && (
-          <div className="shipyard-table">
-            <Shipyard shipyard={this.state.shipyard} />
+          <div>
+            <div className="shipyard-table">
+              <Shipyard shipyard={this.state.shipyard} />
+            </div>
+            <div className="shipyard-table">
+              <ShipSpine ship={this.state.shipAttributes} />
+            </div>
           </div>
         )}
         {/* <Shipyard headings={headings} rows={rows} x={6} y={8} /> */}
