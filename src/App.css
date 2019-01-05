@@ -10,3 +10,13 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.shipyard-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  margin-bottom: 0;
+}

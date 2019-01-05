@@ -164,9 +164,9 @@
     }
   },
   {
-    "id": "TINY_SHIPYARD",
+    "id": "tinyShipyard",
     "type": "SHIPYARD",
-    "size": "TINY",
+    "size": "Tiny",
     "resources": {
       "fiber": 160,
       "thatch": 280,
@@ -175,9 +175,9 @@
     }
   },
   {
-    "id": "SMALL_SHIPYARD",
+    "id": "smallShipyard",
     "type": "SHIPYARD",
-    "size": "SMALL",
+    "size": "Small",
     "resources": {
       "fiber": 240,
       "thatch": 420,
@@ -186,9 +186,9 @@
     }
   },
   {
-    "id": "LARGE_SHIPYARD",
+    "id": "largeShipyard",
     "type": "SHIPYARD",
-    "size": "LARGE",
+    "size": "Large",
     "resources": {
       "fiber": 240,
       "thatch": 420,
