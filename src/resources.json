@@ -318,8 +318,10 @@
   {
     "id": "STEERINGWHEEL",
     "type": "STEERINGWHEEL",
-    "fiber": 128,
-    "hide": 35,
-    "wood": 120
+    "resources": {
+      "fiber": 128,
+      "hide": 35,
+      "wood": 120
+    }
   }
 ]

@@ -12,22 +12,37 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ship: ""
+      ship: "",
+      rigDisplay: "materials-table"
     };
   }
 
   setShipFromDropdown = ship => {
-    let shipAttributes, shipyard;
+    let shipAttributes, shipyard, steeringWheel;
 
     if (ship !== "") {
       shipAttributes = resources.find(item => item.id === ship);
       shipyard = resources.find(item => item.id === shipAttributes.shipyard);
+      steeringWheel = resources.find(item => item.id === "STEERINGWHEEL");
     }
 
     this.setState({
       ship,
       shipAttributes,
-      shipyard
+      shipyard,
+      steeringWheel
+    });
+  };
+
+  handleDisplayChange = event => {
+    const target = event.target;
+    const id = target.id;
+
+    const value =
+      this.state[id] === "materials-table" ? "hide-table" : "materials-table";
+
+    this.setState({
+      [id]: value
     });
   };
 
@@ -42,7 +57,13 @@ class App extends Component {
           <table className="Table">
             <tbody>
               <tr>
-                <td className={`Cell left-cell`}>Rig</td>
+                <td
+                  id="rigDisplay"
+                  className={`Cell left-cell`}
+                  onClick={this.handleDisplayChange}
+                >
+                  Rig
+                </td>
                 <td className={`Cell middle-cell`}>
                   <Dropdown setShip={this.setShipFromDropdown} />
                 </td>
@@ -59,6 +80,8 @@ class App extends Component {
               <ShipCore
                 ship={this.state.shipAttributes}
                 shipyard={this.state.shipyard}
+                steeringWheel={this.state.steeringWheel}
+                rigDisplay={this.state.rigDisplay}
               />
             </div>
             <Planks ship={this.state.shipAttributes} />

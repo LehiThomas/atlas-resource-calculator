@@ -1,6 +1,5 @@
 import * as React from "react";
-import Cell from "../Cell/Cell";
-// import "./Materials.css";
+import "./Materials.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 
@@ -11,10 +10,14 @@ export default class Materials extends React.Component {
   }
 
   renderRow = (key, numberOfMats) => {
+    let multiplier = 1;
+    if (this.props.multiplier) {
+      multiplier = this.props.multiplier;
+    }
     return (
       <tr key={key}>
-        <td className={`Cell left-cell`}>{key} </td>
-        <td className={`Cell middle-cell`}>{numberOfMats}</td>
+        <td className={`Cell left-material-cell`}>{key} </td>
+        <td className={`Cell middle-cell`}>{numberOfMats * multiplier}</td>
         <td className={`Cell right-cell`}>
           <Checkbox />
         </td>
@@ -23,7 +26,7 @@ export default class Materials extends React.Component {
   };
 
   render() {
-    const { resources } = this.props;
+    const { resources, display } = this.props;
     const keys = Object.keys(resources);
     let tbodyMarkup = keys.map(key => {
       let numberOfMats = resources[key];
@@ -31,8 +34,8 @@ export default class Materials extends React.Component {
     });
 
     return (
-      <table className={`Table materials-table`}>
-        <tbody className={`Table materials-table`}>{tbodyMarkup}</tbody>
+      <table className={`Table ${display}`}>
+        <tbody>{tbodyMarkup}</tbody>
       </table>
     );
   }

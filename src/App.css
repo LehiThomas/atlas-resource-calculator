@@ -33,12 +33,26 @@ h4 {
   text-align: left;
 }
 
+td a {
+  display: block;
+  width: 100%;
+}
+
 .left-cell {
   width: 150px;
 }
 
 .middle-cell {
-  width: 125px;
+  width: 120px;
+  text-align: center;
+}
+
+.empty-cell {
+  width: 100px;
+}
+
+.subTableCell {
+  padding: 0;
 }
 
 .right-cell {

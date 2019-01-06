@@ -1,14 +1,19 @@
 import * as React from "react";
-import Cell from "../Cell/Cell";
 import "./ShipCore.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 import Materials from "../Materials/Materials";
 
+import { deckData } from "../../constants/deckConstants";
+
 export default class ShipSpine extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shipyardDisplay: "materials-table",
+      steeringWheelDisplay: "materials-table",
+      decksDisplay: "materials-table"
+    };
   }
 
   getShipyard = () => {
@@ -30,15 +35,25 @@ export default class ShipSpine extends React.Component {
     return shipyard;
   };
 
-  render() {
-    const { ship } = this.props;
-    let shipyard = this.getShipyard();
+  handleDisplayChange = event => {
+    const target = event.target;
+    const id = target.id;
 
-    let wheel;
+    const value =
+      this.state[id] === "materials-table" ? "hide-table" : "materials-table";
+
+    this.setState({
+      [id]: value
+    });
+  };
+
+  render() {
+    const { ship, shipyard, steeringWheel } = this.props;
+    let shipyardName = this.getShipyard();
+
+    let hasWheel = false;
     if (ship.shipyard !== "tinyShipyard") {
-      wheel = 1;
-    } else {
-      wheel = 0;
+      hasWheel = true;
     }
     let deckSize = ship.decks.type;
 
@@ -47,33 +62,89 @@ export default class ShipSpine extends React.Component {
         <table className="Table">
           <tbody>
             <tr>
-              <td className={`Cell left-cell`}>Shipyard</td>
-              <td className={`Cell middle-cell`}>{shipyard}</td>
+              <td colSpan="4" className="subTableCell">
+                <Materials
+                  resources={ship.resources}
+                  display={this.props.rigDisplay}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td
+                id="shipyardDisplay"
+                className={`Cell left-cell`}
+                onClick={this.handleDisplayChange}
+              >
+                Shipyard
+              </td>
+              <td className={`Cell middle-cell`}>{shipyardName}</td>
               <td className={`Cell right-cell`}>
                 <Checkbox />
               </td>
             </tr>
             <tr>
-              <td>
-                <Materials resources={this.props.shipyard.resources} />
+              <td colSpan="4" className="subTableCell">
+                <Materials
+                  resources={shipyard.resources}
+                  display={this.state.shipyardDisplay}
+                />
               </td>
             </tr>
-            <tr>
-              <td className={`Cell left-cell`}>Steering Wheel</td>
-              <td className={`Cell middle-cell`}>{wheel}</td>
-              <td className={`Cell right-cell`}>
-                <Checkbox />
-              </td>
-            </tr>
-            <tr>
-              <td className={`Cell left-cell`}>Decks ({deckSize})</td>
-              <td className={`Cell middle-cell`}>
-                {this.props.ship.decks.quantity}
-              </td>
-              <td className={`Cell right-cell`}>
-                <Checkbox />
-              </td>
-            </tr>
+            {hasWheel && (
+              <tr>
+                <td colSpan="4" className="subTableCell">
+                  <table className="Table">
+                    <tbody>
+                      <tr>
+                        <td
+                          id="steeringWheelDisplay"
+                          className={`Cell left-cell`}
+                          onClick={this.handleDisplayChange}
+                        >
+                          Steering Wheel
+                        </td>
+                        <td className={`Cell middle-cell`}>1</td>
+                        <td className={`Cell right-cell`}>
+                          <Checkbox />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan="4" className="subTableCell">
+                          <Materials
+                            resources={steeringWheel.resources}
+                            display={this.state.steeringWheelDisplay}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          id="decksDisplay"
+                          className={`Cell left-cell`}
+                          onClick={this.handleDisplayChange}
+                        >
+                          Decks ({deckSize})
+                        </td>
+                        <td className={`Cell middle-cell`}>
+                          {ship.decks.quantity}
+                        </td>
+                        <td className={`Cell right-cell`}>
+                          <Checkbox />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colSpan="4" className="subTableCell">
+                          <Materials
+                            resources={deckData[deckSize]}
+                            display={this.state.decksDisplay}
+                            multiplier={ship.decks.quantity}
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

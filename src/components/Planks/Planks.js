@@ -1,5 +1,4 @@
 import * as React from "react";
-import Cell from "../Cell/Cell";
 import "./Planks.css";
 
 import Checkbox from "../Checkbox/Checkbox";
