@@ -7,7 +7,7 @@
     "masts": 6,
     "sailUnits": 16,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 52,
       "type": "large"
     },
@@ -23,8 +23,7 @@
       "fiber": 2560,
       "metal": 680,
       "thatch": 5600,
-      "wood": 4200,
-      "hide": 0
+      "wood": 4200
     }
   },
   {
@@ -35,7 +34,7 @@
     "masts": 4,
     "sailUnits": 8.6,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 12,
       "type": "medium"
     },
@@ -51,8 +50,7 @@
       "fiber": 1080,
       "metal": 160,
       "thatch": 2160,
-      "wood": 1400,
-      "hide": 0
+      "wood": 1400
     }
   },
   {
@@ -63,7 +61,7 @@
     "masts": 3,
     "sailUnits": 4,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 10,
       "type": "medium"
     },
@@ -79,8 +77,7 @@
       "fiber": 380,
       "metal": 48,
       "thatch": 640,
-      "wood": 440,
-      "hide": 0
+      "wood": 440
     }
   },
   {
@@ -91,7 +88,7 @@
     "masts": 2,
     "sailUnits": 2,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 0,
       "type": "none"
     },
@@ -107,8 +104,7 @@
       "fiber": 120,
       "metal": 12,
       "thatch": 220,
-      "wood": 140,
-      "hide": 0
+      "wood": 140
     }
   },
   {
@@ -119,7 +115,7 @@
     "masts": 1,
     "sailUnits": 0,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 0,
       "type": "none"
     },
@@ -134,8 +130,6 @@
     "resources": {
       "fiber": 125,
       "hide": 60,
-      "metal": 0,
-      "thatch": 0,
       "wood": 250
     }
   },
@@ -147,7 +141,7 @@
     "masts": 0,
     "sailUnits": 0,
     "ceilings": 0,
-    "cannonPorts": {
+    "gunports": {
       "quantity": 0,
       "type": "none"
     },
@@ -161,8 +155,6 @@
     },
     "resources": {
       "fiber": 240,
-      "hide": 0,
-      "metal": 0,
       "thatch": 220,
       "wood": 180
     }

@@ -4,6 +4,7 @@ import "./App.css";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Checkbox from "./components/Checkbox/Checkbox";
 import ShipCore from "./components/ShipCore/ShipCore";
+import Planks from "./components/Planks/Planks";
 
 import resources from "./resources.json";
 
@@ -55,8 +56,12 @@ class App extends Component {
         {this.state.shipAttributes && (
           <div>
             <div className="shipcore-table">
-              <ShipCore ship={this.state.shipAttributes} />
+              <ShipCore
+                ship={this.state.shipAttributes}
+                shipyard={this.state.shipyard}
+              />
             </div>
+            <Planks ship={this.state.shipAttributes} />
           </div>
         )}
       </div>

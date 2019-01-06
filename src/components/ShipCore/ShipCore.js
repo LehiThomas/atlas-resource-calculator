@@ -3,6 +3,7 @@ import Cell from "../Cell/Cell";
 import "./ShipCore.css";
 
 import Checkbox from "../Checkbox/Checkbox";
+import Materials from "../Materials/Materials";
 
 export default class ShipSpine extends React.Component {
   constructor(props) {
@@ -30,7 +31,16 @@ export default class ShipSpine extends React.Component {
   };
 
   render() {
+    const { ship } = this.props;
     let shipyard = this.getShipyard();
+
+    let wheel;
+    if (ship.shipyard !== "tinyShipyard") {
+      wheel = 1;
+    } else {
+      wheel = 0;
+    }
+    let deckSize = ship.decks.type;
 
     return (
       <div>
@@ -44,8 +54,22 @@ export default class ShipSpine extends React.Component {
               </td>
             </tr>
             <tr>
+              <td>
+                <Materials resources={this.props.shipyard.resources} />
+              </td>
+            </tr>
+            <tr>
               <td className={`Cell left-cell`}>Steering Wheel</td>
-              <td className={`Cell middle-cell`}># of wheels</td>
+              <td className={`Cell middle-cell`}>{wheel}</td>
+              <td className={`Cell right-cell`}>
+                <Checkbox />
+              </td>
+            </tr>
+            <tr>
+              <td className={`Cell left-cell`}>Decks ({deckSize})</td>
+              <td className={`Cell middle-cell`}>
+                {this.props.ship.decks.quantity}
+              </td>
               <td className={`Cell right-cell`}>
                 <Checkbox />
               </td>
