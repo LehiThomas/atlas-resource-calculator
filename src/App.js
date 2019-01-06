@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Dropdown from "./components/Dropdown/Dropdown";
-import DataTable from "./components/DataTable/DataTable";
-import Shipyard from "./components/Shipyard/Shipyard";
-import ShipSpine from "./components/ShipSpine/ShipSpine";
+import Checkbox from "./components/Checkbox/Checkbox";
+import ShipCore from "./components/ShipCore/ShipCore";
 
 import resources from "./resources.json";
 
@@ -32,27 +31,34 @@ class App extends Component {
   };
 
   render() {
-    const headings = ["", "Fiber", "Thatch", "Wood", "Metal", "Hide", "Coal"];
-
-    //const rows = [[this.state.shipyard.size, ...this.state.shipyard.resources]];
-
     return (
       <div className="App">
         <header className="App-header">
           <h2>Atlas Shipwright's Resource Calculator!</h2>
         </header>
-        <Dropdown setShip={this.setShipFromDropdown} />
+        <div className="shipcore-table">
+          <h4>Ship Core</h4>
+          <table className="Table">
+            <tbody>
+              <tr>
+                <td className={`Cell left-cell`}>Rig</td>
+                <td className={`Cell middle-cell`}>
+                  <Dropdown setShip={this.setShipFromDropdown} />
+                </td>
+                <td className={`Cell right-cell`}>
+                  <Checkbox />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         {this.state.shipAttributes && (
           <div>
-            <div className="shipyard-table">
-              <Shipyard shipyard={this.state.shipyard} />
-            </div>
-            <div className="shipyard-table">
-              <ShipSpine ship={this.state.shipAttributes} />
+            <div className="shipcore-table">
+              <ShipCore ship={this.state.shipAttributes} />
             </div>
           </div>
         )}
-        {/* <Shipyard headings={headings} rows={rows} x={6} y={8} /> */}
       </div>
     );
   }
