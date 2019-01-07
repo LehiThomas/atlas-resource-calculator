@@ -1,3 +1,6 @@
+import { ADD_MATERIALS } from "../consts";
+import { SUBTRACT_MATERIALS } from "../consts";
+
 const initialState = {
   wood: 0,
   fiber: 0,
@@ -10,6 +13,14 @@ const initialState = {
 
 const materialsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_MATERIALS:
+      return {
+        ...state
+      };
+    case SUBTRACT_MATERIALS:
+      return {
+        ...state
+      };
     default:
       return state;
   }

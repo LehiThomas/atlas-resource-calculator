@@ -1,9 +1,12 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import "./Materials.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 
-export default class Materials extends React.Component {
+import { addMaterials } from "../../redux/actions";
+
+class Materials extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -40,3 +43,16 @@ export default class Materials extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  totalResources: state.resources
+});
+
+const mapDispatchToProps = dispatch => ({
+  addMaterialsToTotal: resources => addMaterials(resources)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Materials);

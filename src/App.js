@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
 
 import Dropdown from "./components/Dropdown/Dropdown";
@@ -7,6 +8,8 @@ import ShipCore from "./components/ShipCore/ShipCore";
 import Planks from "./components/Planks/Planks";
 
 import resources from "./resources.json";
+
+import { addMaterials } from "./redux/actions";
 
 class App extends Component {
   constructor(props) {
@@ -92,4 +95,25 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  totalResources: state.resources
+});
+
+const mapDispatchToProps = dispatch => ({
+  addMaterialsToTotal: resources => addMaterials(resources)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+// const mapStateToProps = ({ user, eventReducer }) => ({
+// 	user: user,
+// 	eventType: eventReducer.eventType,
+// 	event: eventReducer.event
+// });
+
+// mapDispatchToProps = dispatch => ({
+// 	setLocation: event => dispatch(updateEvent(event))
+// });
