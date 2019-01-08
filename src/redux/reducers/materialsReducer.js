@@ -1,6 +1,8 @@
 import { ADD_MATERIALS } from "../consts";
 import { SUBTRACT_MATERIALS } from "../consts";
+import { RESET } from "../consts";
 
+import { addMats, newShip, subtractMats } from "../../util/math";
 const initialState = {
   wood: 0,
   fiber: 0,
@@ -12,14 +14,19 @@ const initialState = {
 };
 
 const materialsReducer = (state = initialState, action) => {
+  let resources = action.resources;
   switch (action.type) {
     case ADD_MATERIALS:
       return {
-        ...state
+        ...addMats(resources, initialState)
       };
     case SUBTRACT_MATERIALS:
       return {
-        ...state
+        ...subtractMats(resources, state)
+      };
+    case RESET:
+      return {
+        ...initialState
       };
     default:
       return state;

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { connect } from "react-redux";
+
 import "./ShipCore.css";
 
 import Checkbox from "../Checkbox/Checkbox";
@@ -6,7 +8,9 @@ import Materials from "../Materials/Materials";
 
 import { deckData } from "../../constants/deckConstants";
 
-export default class ShipSpine extends React.Component {
+import { addMaterials } from "../../redux/actions";
+
+class ShipCore extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +19,14 @@ export default class ShipSpine extends React.Component {
       decksDisplay: "materials-table"
     };
   }
+
+  // componentDidMount() {
+  //   this.props.addMaterialsToTotal(this.props.resources);
+  // }
+
+  // componentDidUpdate() {
+  //   this.props.addMaterialsToTotal(this.props.resources);
+  // }
 
   getShipyard = () => {
     const { ship } = this.props;
@@ -151,3 +163,14 @@ export default class ShipSpine extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  addMaterialsToTotal: resources => dispatch(addMaterials(resources))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShipCore);

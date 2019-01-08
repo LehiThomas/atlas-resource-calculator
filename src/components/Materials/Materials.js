@@ -4,13 +4,34 @@ import "./Materials.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 
-import { addMaterials } from "../../redux/actions";
+import { addMaterials, subtractMaterials } from "../../redux/actions";
 
 class Materials extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  componentDidMount() {
+    this.props.addMaterialsToTotal(this.props.resources);
+  }
+
+  componentDidUpdate() {
+    this.props.addMaterialsToTotal(this.props.resources);
+  }
+
+  isChecked = (checked, matType) => {
+    console.log("====================================");
+    console.log(checked, matType);
+    console.log("====================================");
+    if (checked) {
+      this.props.addMaterialsToTotal(this.props.resources);
+    } else {
+      console.log("subtract mats", matType);
+
+      this.props.subtractMaterialsFromTotal(this.props.resources.matType);
+    }
+  };
 
   renderRow = (key, numberOfMats) => {
     let multiplier = 1;
@@ -22,7 +43,7 @@ class Materials extends React.Component {
         <td className={`Cell left-material-cell`}>{key} </td>
         <td className={`Cell middle-cell`}>{numberOfMats * multiplier}</td>
         <td className={`Cell right-cell`}>
-          <Checkbox />
+          <Checkbox matType={key} isChecked={this.isChecked} />
         </td>
       </tr>
     );
@@ -49,7 +70,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => addMaterials(resources)
+  addMaterialsToTotal: resources => dispatch(addMaterials(resources)),
+  subtractMaterialsFromTotal: resources =>
+    dispatch(subtractMaterials(resources))
 });
 
 export default connect(

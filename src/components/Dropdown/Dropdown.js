@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import "../Dropdown/Dropdown.css";
+
+import { resetStore } from "../../redux/actions";
 
 class Dropdown extends Component {
   constructor(props) {
@@ -10,6 +14,7 @@ class Dropdown extends Component {
   }
 
   handleChange(event) {
+    this.props.resetMats();
     this.setState({ value: event.target.value });
     this.props.setShip(event.target.value);
   }
@@ -33,4 +38,11 @@ class Dropdown extends Component {
   }
 }
 
-export default Dropdown;
+const mapDispatchToProps = dispatch => ({
+  resetMats: resources => dispatch(resetStore())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Dropdown);

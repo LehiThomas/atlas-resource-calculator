@@ -1,2 +1,4 @@
 export const ADD_MATERIALS = "ADD_MATERIALS";
 export const SUBTRACT_MATERIALS = "SUBTRACT_MATERIALS";
+
+export const RESET = "RESET";
