@@ -17,6 +17,10 @@ const initialState = {
 const materialsReducer = (state = initialState, action) => {
   let resources = action.resources;
   switch (action.type) {
+    case RESET:
+      return {
+        ...initialState
+      };
     case ADD_MATERIALS:
       return {
         ...addMats(resources, state)
@@ -28,10 +32,6 @@ const materialsReducer = (state = initialState, action) => {
     case SUBTRACT_MATERIALS:
       return {
         ...subtractMats(resources, state)
-      };
-    case RESET:
-      return {
-        ...initialState
       };
     default:
       return state;

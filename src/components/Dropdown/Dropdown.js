@@ -15,8 +15,12 @@ class Dropdown extends Component {
 
   handleChange(event) {
     this.props.resetMats();
-    this.setState({ value: event.target.value });
-    this.props.setShip(event.target.value);
+    let value = event.target.value
+    setTimeout(() => {
+      this.setState({ value });
+      this.props.setShip(value);
+    }, 1000)
+
   }
 
   render() {

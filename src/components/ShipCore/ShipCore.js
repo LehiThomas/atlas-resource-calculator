@@ -59,6 +59,17 @@ class ShipCore extends React.Component {
     });
   };
 
+  createMaterialsSubTable = (resources, display, multiplier) => {
+    this.props.addMaterialsToTotal(resources);
+    return (
+      <Materials
+        resources={resources}
+        display={display}
+        multiplier={multiplier}
+      />
+    )
+  }
+
   render() {
     const { ship, shipyard, steeringWheel } = this.props;
     let shipyardName = this.getShipyard();
@@ -96,6 +107,7 @@ class ShipCore extends React.Component {
             </tr>
             <tr>
               <td colSpan="4" className="subTableCell">
+                {/* {this.createMaterialsSubTable(shipyard.resources, this.state.shipyardDisplay, 1)} */}
                 <Materials
                   resources={shipyard.resources}
                   display={this.state.shipyardDisplay}
@@ -164,7 +176,9 @@ class ShipCore extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+
+});
 
 const mapDispatchToProps = dispatch => ({
   addMaterialsToTotal: resources => dispatch(addMaterials(resources))
