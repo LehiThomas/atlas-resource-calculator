@@ -1,5 +1,6 @@
 import { ADD_MATERIALS } from "./consts";
 import { SUBTRACT_MATERIALS } from "./consts";
+import { ADD_MATERIALS_FROM_CHECKBOX } from "./consts";
 import { RESET } from "./consts";
 
 export const addMaterials = resources => {
@@ -9,9 +10,14 @@ export const addMaterials = resources => {
   };
 };
 
-export const subtractMaterials = resources => {
-  console.log(resources);
+export const addMaterialsFromCheckbox = resources => {
+  return {
+    type: ADD_MATERIALS_FROM_CHECKBOX,
+    resources: resources
+  };
+};
 
+export const subtractMaterials = resources => {
   return {
     type: SUBTRACT_MATERIALS,
     resources

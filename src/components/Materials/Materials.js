@@ -4,7 +4,7 @@ import "./Materials.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 
-import { addMaterials, subtractMaterials } from "../../redux/actions";
+import { addMaterials, addMaterialsFromCheckbox, subtractMaterials } from "../../redux/actions";
 
 class Materials extends React.Component {
   constructor(props) {
@@ -16,20 +16,22 @@ class Materials extends React.Component {
     this.props.addMaterialsToTotal(this.props.resources);
   }
 
-  componentDidUpdate() {
-    this.props.addMaterialsToTotal(this.props.resources);
-  }
+  // componentDidUpdate() {
+  //   this.props.addMaterialsToTotal(this.props.resources);
+  // }
 
   isChecked = (checked, matType) => {
-    console.log("====================================");
-    console.log(checked, matType);
-    console.log("====================================");
-    if (checked) {
-      this.props.addMaterialsToTotal(this.props.resources);
-    } else {
-      console.log("subtract mats", matType);
+    let multiplier = 1;
+    if (this.props.multiplier) {
+      multiplier = this.props.multiplier;
+    }
 
-      this.props.subtractMaterialsFromTotal(this.props.resources.matType);
+    let resource = { [matType]: this.props.resources[matType] * multiplier }
+
+    if (checked) {
+      this.props.addMaterialsToTotal(resource);
+    } else {
+      this.props.subtractMaterialsFromTotal(resource);
     }
   };
 
@@ -70,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => dispatch(addMaterials(resources)),
+  addMaterialsToTotal: resources => dispatch(addMaterialsFromCheckbox(resources)),
   subtractMaterialsFromTotal: resources =>
     dispatch(subtractMaterials(resources))
 });

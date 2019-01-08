@@ -1,8 +1,9 @@
 import { ADD_MATERIALS } from "../consts";
 import { SUBTRACT_MATERIALS } from "../consts";
+import { ADD_MATERIALS_FROM_CHECKBOX } from "../consts";
 import { RESET } from "../consts";
 
-import { addMats, newShip, subtractMats } from "../../util/math";
+import { addMats, addMatsFromCheckbox, subtractMats } from "../../util/math";
 const initialState = {
   wood: 0,
   fiber: 0,
@@ -18,7 +19,11 @@ const materialsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MATERIALS:
       return {
-        ...addMats(resources, initialState)
+        ...addMats(resources, state)
+      };
+    case ADD_MATERIALS_FROM_CHECKBOX:
+      return {
+        ...addMatsFromCheckbox(resources, state)
       };
     case SUBTRACT_MATERIALS:
       return {
