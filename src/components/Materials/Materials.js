@@ -4,7 +4,11 @@ import "./Materials.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 
-import { addMaterials, addMaterialsFromCheckbox, subtractMaterials } from "../../redux/actions";
+import {
+  addMaterials,
+  addMaterialsFromCheckbox,
+  subtractMaterials
+} from "../../redux/actions";
 
 class Materials extends React.Component {
   constructor(props) {
@@ -13,7 +17,7 @@ class Materials extends React.Component {
   }
 
   componentDidMount() {
-    this.props.addMaterialsToTotal(this.props.resources);
+    this.props.addMaterialsToTotal(this.props.resources, this.props.multiplier);
   }
 
   componentDidUpdate() {
@@ -26,10 +30,10 @@ class Materials extends React.Component {
       multiplier = this.props.multiplier;
     }
 
-    let resource = { [matType]: this.props.resources[matType] * multiplier }
+    let resource = { [matType]: this.props.resources[matType] * multiplier };
 
-    if (checked) {
-      this.props.addMaterialsToTotal(resource);
+    if (!checked) {
+      this.props.addIndividualMaterials(resource);
     } else {
       this.props.subtractMaterialsFromTotal(resource);
     }
@@ -72,9 +76,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => dispatch(addMaterialsFromCheckbox(resources)),
+  addMaterialsToTotal: (resources, multiplier) =>
+    dispatch(addMaterials(resources, multiplier)),
   subtractMaterialsFromTotal: resources =>
-    dispatch(subtractMaterials(resources))
+    dispatch(subtractMaterials(resources)),
+  addIndividualMaterials: resources =>
+    dispatch(addMaterialsFromCheckbox(resources))
 });
 
 export default connect(

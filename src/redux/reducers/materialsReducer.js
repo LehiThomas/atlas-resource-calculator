@@ -1,7 +1,9 @@
-import { ADD_MATERIALS } from "../consts";
-import { SUBTRACT_MATERIALS } from "../consts";
-import { ADD_MATERIALS_FROM_CHECKBOX } from "../consts";
-import { RESET } from "../consts";
+import {
+  ADD_MATERIALS,
+  SUBTRACT_MATERIALS,
+  ADD_MATERIALS_FROM_CHECKBOX,
+  RESET
+} from "../consts";
 
 import { addMats, addMatsFromCheckbox, subtractMats } from "../../util/math";
 const initialState = {
@@ -15,7 +17,7 @@ const initialState = {
 };
 
 const materialsReducer = (state = initialState, action) => {
-  let resources = action.resources;
+  let { resources, multiplier } = action;
   switch (action.type) {
     case RESET:
       return {
@@ -23,7 +25,7 @@ const materialsReducer = (state = initialState, action) => {
       };
     case ADD_MATERIALS:
       return {
-        ...addMats(resources, state)
+        ...addMats(resources, state, multiplier)
       };
     case ADD_MATERIALS_FROM_CHECKBOX:
       return {

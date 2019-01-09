@@ -4,7 +4,7 @@ export default class Checkbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isGoing: true
+      isChecked: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,9 +25,9 @@ export default class Checkbox extends React.Component {
     return (
       <form>
         <input
-          name="isGoing"
+          name="isChecked"
           type="checkbox"
-          checked={this.state.isGoing}
+          checked={this.state.isChecked}
           onChange={this.handleInputChange}
         />
       </form>

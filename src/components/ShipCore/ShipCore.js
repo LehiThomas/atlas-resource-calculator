@@ -7,6 +7,8 @@ import Checkbox from "../Checkbox/Checkbox";
 import Materials from "../Materials/Materials";
 
 import { deckData } from "../../constants/deckConstants";
+import { shipyardData } from "../../constants/shipyardConstants";
+import { steeringWheel } from "../../constants/steeringWheelConstants";
 
 import { addMaterials } from "../../redux/actions";
 
@@ -30,21 +32,25 @@ class ShipCore extends React.Component {
 
   getShipyard = () => {
     const { ship } = this.props;
-    let shipyard;
+    let shipyard, shipyardTitle;
     switch (ship.shipyard) {
       case "largeShipyard":
-        shipyard = "Large Shipyard";
+        shipyardTitle = "Large Shipyard";
+        shipyard = shipyardData.large;
         break;
       case "smallShipyard":
-        shipyard = "Small Shipyard";
+        shipyardTitle = "Small Shipyard";
+        shipyard = shipyardData.small;
         break;
       case "tinyShipyard":
-        shipyard = "Tiny Shipyard";
+        shipyardTitle = "Tiny Shipyard";
+        shipyard = shipyardData.tiny;
         break;
       default:
         break;
     }
-    return shipyard;
+
+    return { resources: shipyard, name: shipyardTitle };
   };
 
   handleDisplayChange = event => {
@@ -59,20 +65,9 @@ class ShipCore extends React.Component {
     });
   };
 
-  createMaterialsSubTable = (resources, display, multiplier) => {
-    this.props.addMaterialsToTotal(resources);
-    return (
-      <Materials
-        resources={resources}
-        display={display}
-        multiplier={multiplier}
-      />
-    )
-  }
-
   render() {
-    const { ship, shipyard, steeringWheel } = this.props;
-    let shipyardName = this.getShipyard();
+    const { ship } = this.props;
+    let shipyard = this.getShipyard();
 
     let hasWheel = false;
     if (ship.shipyard !== "tinyShipyard") {
@@ -100,14 +95,13 @@ class ShipCore extends React.Component {
               >
                 Shipyard
               </td>
-              <td className={`Cell middle-cell`}>{shipyardName}</td>
+              <td className={`Cell middle-cell`}>{shipyard.name}</td>
               <td className={`Cell right-cell`}>
                 <Checkbox />
               </td>
             </tr>
             <tr>
               <td colSpan="4" className="subTableCell">
-                {/* {this.createMaterialsSubTable(shipyard.resources, this.state.shipyardDisplay, 1)} */}
                 <Materials
                   resources={shipyard.resources}
                   display={this.state.shipyardDisplay}
@@ -135,7 +129,7 @@ class ShipCore extends React.Component {
                       <tr>
                         <td colSpan="4" className="subTableCell">
                           <Materials
-                            resources={steeringWheel.resources}
+                            resources={steeringWheel}
                             display={this.state.steeringWheelDisplay}
                           />
                         </td>
@@ -177,7 +171,7 @@ class ShipCore extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+  ship: state.shipReducer
 });
 
 const mapDispatchToProps = dispatch => ({

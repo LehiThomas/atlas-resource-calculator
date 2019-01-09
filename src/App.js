@@ -9,31 +9,24 @@ import Planks from "./components/Planks/Planks";
 
 import resources from "./resources.json";
 
-import { addMaterials } from "./redux/actions";
+import { setShip } from "./redux/actions";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ship: "",
+      isShipSet: false,
       rigDisplay: "materials-table"
     };
   }
 
   setShipFromDropdown = ship => {
-    let shipAttributes, shipyard, steeringWheel;
-
-    if (ship !== "") {
-      shipAttributes = resources.find(item => item.id === ship);
-      shipyard = resources.find(item => item.id === shipAttributes.shipyard);
-      steeringWheel = resources.find(item => item.id === "STEERINGWHEEL");
-    }
+    let shipAttributes = resources.find(item => item.id === ship);
+    this.props.setShip(shipAttributes);
 
     this.setState({
-      ship,
-      shipAttributes,
-      shipyard,
-      steeringWheel
+      isShipSet: true
     });
   };
 
@@ -77,17 +70,12 @@ class App extends Component {
             </tbody>
           </table>
         </div>
-        {this.state.shipAttributes && (
+        {this.state.isShipSet && (
           <div>
             <div className="shipcore-table">
-              <ShipCore
-                ship={this.state.shipAttributes}
-                shipyard={this.state.shipyard}
-                steeringWheel={this.state.steeringWheel}
-                rigDisplay={this.state.rigDisplay}
-              />
+              <ShipCore rigDisplay={this.state.rigDisplay} />
             </div>
-            <Planks ship={this.state.shipAttributes} />
+            {/* <Planks /> */}
           </div>
         )}
       </div>
@@ -96,24 +84,14 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  totalResources: state.resources
+  ship: state.shipReducer
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => addMaterials(resources)
+  setShip: ship => dispatch(setShip(ship))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
-// const mapStateToProps = ({ user, eventReducer }) => ({
-// 	user: user,
-// 	eventType: eventReducer.eventType,
-// 	event: eventReducer.event
-// });
-
-// mapDispatchToProps = dispatch => ({
-// 	setLocation: event => dispatch(updateEvent(event))
-// });

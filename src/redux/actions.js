@@ -1,12 +1,16 @@
-import { ADD_MATERIALS } from "./consts";
-import { SUBTRACT_MATERIALS } from "./consts";
-import { ADD_MATERIALS_FROM_CHECKBOX } from "./consts";
-import { RESET } from "./consts";
+import {
+  ADD_MATERIALS,
+  SET_SHIP,
+  SUBTRACT_MATERIALS,
+  ADD_MATERIALS_FROM_CHECKBOX,
+  RESET
+} from "./consts";
 
-export const addMaterials = resources => {
+export const addMaterials = (resources, multiplier = 1) => {
   return {
     type: ADD_MATERIALS,
-    resources: resources
+    resources: resources,
+    multiplier: multiplier
   };
 };
 
@@ -27,5 +31,12 @@ export const subtractMaterials = resources => {
 export const resetStore = () => {
   return {
     type: RESET
+  };
+};
+
+export const setShip = ship => {
+  return {
+    type: SET_SHIP,
+    ship
   };
 };
