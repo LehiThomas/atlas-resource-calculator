@@ -13,7 +13,8 @@ const initialState = {
   stone: 0,
   metal: 0,
   coal: 0,
-  hide: 0
+  hide: 0,
+  ingot: 0
 };
 
 const materialsReducer = (state = initialState, action) => {

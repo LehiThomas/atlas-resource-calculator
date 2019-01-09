@@ -20,10 +20,10 @@ class Materials extends React.Component {
     this.props.addMaterialsToTotal(this.props.resources, this.props.multiplier);
   }
 
-  componentDidUpdate() {
-    console.log(this.props.parent, this.props.resources);
-
-    this.props.addMaterialsToTotal(this.props.resources, this.props.multiplier);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.resources !== this.props.resources) {
+      this.props.addMaterialsToTotal(this.props.resources, this.props.multiplier);
+    }
   }
 
   isChecked = (checked, matType) => {

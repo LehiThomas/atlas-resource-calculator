@@ -19,7 +19,7 @@ class Dropdown extends Component {
     setTimeout(() => {
       this.setState({ value });
       this.props.setShip(value);
-    }, 1000)
+    }, 0)
 
   }
 

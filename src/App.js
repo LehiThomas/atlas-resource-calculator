@@ -6,6 +6,7 @@ import Dropdown from "./components/Dropdown/Dropdown";
 import Checkbox from "./components/Checkbox/Checkbox";
 import ShipCore from "./components/ShipCore/ShipCore";
 import Planks from "./components/Planks/Planks";
+import AllResources from "./components/AllResources/AllResources";
 
 import resources from "./resources.json";
 
@@ -70,21 +71,28 @@ class App extends Component {
             </tbody>
           </table>
         </div>
-        {this.state.isShipSet && (
-          <div>
-            <div className="shipcore-table">
-              <ShipCore rigDisplay={this.state.rigDisplay} />
+        {
+          this.state.isShipSet && (
+            <div>
+              <div className="shipcore-table">
+                <ShipCore rigDisplay={this.state.rigDisplay} />
+              </div>
+              {/* <Planks /> */}
             </div>
-            {/* <Planks /> */}
-          </div>
-        )}
+          )}
+        {
+          this.props.mats && (
+            <AllResources />
+          )
+        }
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ship: state.shipReducer
+  ship: state.shipReducer,
+  mats: state.materialsReducer
 });
 
 const mapDispatchToProps = dispatch => ({

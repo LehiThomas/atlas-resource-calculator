@@ -9,25 +9,6 @@ export default class Planks extends React.Component {
     this.state = {};
   }
 
-  getShipyard = () => {
-    const { ship } = this.props;
-    let shipyard;
-    switch (ship.shipyard) {
-      case "largeShipyard":
-        shipyard = "Large Shipyard";
-        break;
-      case "smallShipyard":
-        shipyard = "Small Shipyard";
-        break;
-      case "tinyShipyard":
-        shipyard = "Tiny Shipyard";
-        break;
-      default:
-        break;
-    }
-    return shipyard;
-  };
-
   render() {
     let { ship } = this.props;
 

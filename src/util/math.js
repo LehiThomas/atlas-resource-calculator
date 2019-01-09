@@ -1,11 +1,10 @@
 export const addMats = (mats, state, multiplier) => {
-  console.log("Store premath", state, multiplier);
   for (const key in mats) {
     if (mats.hasOwnProperty(key)) {
       state[key] = state[key] + mats[key] * multiplier;
     }
   }
-  console.log("Store post math", state);
+
   return state;
 };
 
