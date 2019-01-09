@@ -84,6 +84,7 @@ class ShipCore extends React.Component {
                 <Materials
                   resources={ship.resources}
                   display={this.props.rigDisplay}
+                  parent={"Rig"}
                 />
               </td>
             </tr>
@@ -105,6 +106,7 @@ class ShipCore extends React.Component {
                 <Materials
                   resources={shipyard.resources}
                   display={this.state.shipyardDisplay}
+                  parent={"Shipyard"}
                 />
               </td>
             </tr>
@@ -131,6 +133,7 @@ class ShipCore extends React.Component {
                           <Materials
                             resources={steeringWheel}
                             display={this.state.steeringWheelDisplay}
+                            parent={"Steering Wheel"}
                           />
                         </td>
                       </tr>
@@ -155,6 +158,7 @@ class ShipCore extends React.Component {
                             resources={deckData[deckSize]}
                             display={this.state.decksDisplay}
                             multiplier={ship.decks.quantity}
+                            parent={"Decks"}
                           />
                         </td>
                       </tr>

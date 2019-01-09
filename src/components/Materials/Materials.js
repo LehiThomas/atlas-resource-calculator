@@ -21,7 +21,9 @@ class Materials extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.addMaterialsToTotal(this.props.resources);
+    console.log(this.props.parent, this.props.resources);
+
+    this.props.addMaterialsToTotal(this.props.resources, this.props.multiplier);
   }
 
   isChecked = (checked, matType) => {
@@ -72,7 +74,7 @@ class Materials extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  totalResources: state.resources
+  ship: state.shipReducer
 });
 
 const mapDispatchToProps = dispatch => ({
