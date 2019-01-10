@@ -1,9 +1,12 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import "./Planks.css";
 
 import Checkbox from "../Checkbox/Checkbox";
+import ItemRowTable from "../ItemRowTable/ItemRowTable";
 
-export default class Planks extends React.Component {
+import { addMaterials, subtractMaterials } from "../../redux/actions";
+class Planks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -20,6 +23,16 @@ export default class Planks extends React.Component {
         <h4>Planks/Gunports</h4>
         <table className="Table">
           <tbody>
+            <tr>
+              <td colSpan="4" className="subTableCell">
+                <ItemRowTable
+                  quantity={ship.planks.quantity}
+                  resources={ship.resources}
+                  display={this.state.shipyardDisplay}
+                  name={"Planks"}
+                />
+              </td>
+            </tr>
             <tr>
               <td className={`Cell left-cell`}>Planks ({plankSize})</td>
               <td className={`Cell middle-cell`}>{ship.planks.quantity}</td>
@@ -42,3 +55,18 @@ export default class Planks extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  ship: state.shipReducer
+});
+
+const mapDispatchToProps = dispatch => ({
+  addMaterialsToTotal: resources => dispatch(addMaterials(resources)),
+  subtractMaterialsFromTotal: resources =>
+    dispatch(subtractMaterials(resources))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Planks);

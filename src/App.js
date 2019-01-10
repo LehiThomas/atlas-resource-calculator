@@ -77,7 +77,7 @@ class App extends Component {
               <div className="shipcore-table">
                 <ShipCore rigDisplay={this.state.rigDisplay} />
               </div>
-              {/* <Planks /> */}
+              <Planks />
             </div>
           )}
         {
