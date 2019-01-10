@@ -10,7 +10,7 @@ import { deckData } from "../../constants/deckConstants";
 import { shipyardData } from "../../constants/shipyardConstants";
 import { steeringWheel } from "../../constants/steeringWheelConstants";
 
-import { addMaterials } from "../../redux/actions";
+import { addMaterials, subtractMaterials } from "../../redux/actions";
 
 class ShipCore extends React.Component {
   constructor(props) {
@@ -18,17 +18,10 @@ class ShipCore extends React.Component {
     this.state = {
       shipyardDisplay: "materials-table",
       steeringWheelDisplay: "materials-table",
-      decksDisplay: "materials-table"
+      decksDisplay: "materials-table",
+      shipyardCheckBox: false
     };
   }
-
-  // componentDidMount() {
-  //   this.props.addMaterialsToTotal(this.props.resources);
-  // }
-
-  // componentDidUpdate() {
-  //   this.props.addMaterialsToTotal(this.props.resources);
-  // }
 
   getShipyard = () => {
     const { ship } = this.props;
@@ -65,6 +58,21 @@ class ShipCore extends React.Component {
     });
   };
 
+  isChecked = (checked, matType) => {
+    // let multiplier = 1;
+    // if (this.props.multiplier) {
+    //   multiplier = this.props.multiplier;
+    // }
+
+    let resources = matType
+
+    if (!checked) {
+      this.props.addIndividualMaterials(resources);
+    } else {
+      this.props.subtractMaterialsFromTotal(resources);
+    }
+  };
+
   render() {
     const { ship } = this.props;
     let shipyard = this.getShipyard();
@@ -98,7 +106,7 @@ class ShipCore extends React.Component {
               </td>
               <td className={`Cell middle-cell`}>{shipyard.name}</td>
               <td className={`Cell right-cell`}>
-                <Checkbox />
+                <Checkbox isChecked={this.isChecked} matType={shipyard.resources} />
               </td>
             </tr>
             <tr>
@@ -179,7 +187,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => dispatch(addMaterials(resources))
+  addMaterialsToTotal: resources => dispatch(addMaterials(resources)),
+  subtractMaterialsFromTotal: resources =>
+    dispatch(subtractMaterials(resources))
 });
 
 export default connect(
