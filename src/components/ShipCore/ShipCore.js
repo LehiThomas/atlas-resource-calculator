@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 
 import "./ShipCore.css";
 
-import Checkbox from "../Checkbox/Checkbox";
-import Materials from "../Materials/Materials";
 import ItemRowTable from "../ItemRowTable/ItemRowTable";
 
 import { deckData } from "../../constants/deckConstants";

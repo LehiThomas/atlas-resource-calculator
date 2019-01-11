@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
-import Dropdown from "./components/Dropdown/Dropdown";
-import Checkbox from "./components/Checkbox/Checkbox";
 import ShipCore from "./components/ShipCore/ShipCore";
 import PlanksGunports from "./components/PlanksGunports/PlanksGunports";
 import AllResources from "./components/AllResources/AllResources";
