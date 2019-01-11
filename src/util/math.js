@@ -9,8 +9,6 @@ export const addMats = (mats, state, multiplier) => {
 };
 
 export const addMatsFromCheckbox = (mats, state) => {
-  console.log(mats);
-
   for (const key in mats) {
     if (mats.hasOwnProperty(key)) {
       state[key] = state[key] + mats[key];

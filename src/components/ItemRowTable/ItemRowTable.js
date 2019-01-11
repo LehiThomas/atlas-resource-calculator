@@ -63,7 +63,9 @@ class ItemRowTable extends React.Component {
   };
 
   isItemChecked = checked => {
-    this.setState({ itemCheck: checked });
+    this.setState({ showMats: true }, () => {
+      this.setState({ itemCheck: checked });
+    });
   };
 
   renderRow = (key, numberOfMats) => {

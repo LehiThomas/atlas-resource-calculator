@@ -3,15 +3,11 @@ import { connect } from "react-redux";
 
 import "./ShipCore.css";
 
-import Checkbox from "../Checkbox/Checkbox";
-import Materials from "../Materials/Materials";
 import ItemRowTable from "../ItemRowTable/ItemRowTable";
 
 import { deckData } from "../../constants/deckConstants";
 import { shipyardData } from "../../constants/shipyardConstants";
 import { steeringWheel } from "../../constants/steeringWheelConstants";
-
-import { addMaterials, subtractMaterials } from "../../redux/actions";
 
 class ShipCore extends React.Component {
   constructor(props) {
@@ -103,13 +99,4 @@ const mapStateToProps = state => ({
   ship: state.shipReducer
 });
 
-const mapDispatchToProps = dispatch => ({
-  addMaterialsToTotal: resources => dispatch(addMaterials(resources)),
-  subtractMaterialsFromTotal: resources =>
-    dispatch(subtractMaterials(resources))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShipCore);
+export default connect(mapStateToProps)(ShipCore);
