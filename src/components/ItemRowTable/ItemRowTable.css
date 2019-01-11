@@ -10,3 +10,7 @@
 .left-row-cell {
   width: 130px;
 }
+
+.empty-cell {
+  width: 20px;
+}

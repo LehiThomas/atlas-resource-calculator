@@ -5,6 +5,7 @@ import "./ShipCore.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 import Materials from "../Materials/Materials";
+import ItemRowTable from "../ItemRowTable/ItemRowTable";
 
 import { deckData } from "../../constants/deckConstants";
 import { shipyardData } from "../../constants/shipyardConstants";
@@ -15,12 +16,7 @@ import { addMaterials, subtractMaterials } from "../../redux/actions";
 class ShipCore extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      shipyardDisplay: "materials-table",
-      steeringWheelDisplay: "materials-table",
-      decksDisplay: "materials-table",
-      shipyardCheckBox: false
-    };
+    this.state = {};
   }
 
   getShipyard = () => {
@@ -28,15 +24,15 @@ class ShipCore extends React.Component {
     let shipyard, shipyardTitle;
     switch (ship.shipyard) {
       case "largeShipyard":
-        shipyardTitle = "Large Shipyard";
+        shipyardTitle = "Large";
         shipyard = shipyardData.large;
         break;
       case "smallShipyard":
-        shipyardTitle = "Small Shipyard";
+        shipyardTitle = "Small";
         shipyard = shipyardData.small;
         break;
       case "tinyShipyard":
-        shipyardTitle = "Tiny Shipyard";
+        shipyardTitle = "Tiny";
         shipyard = shipyardData.tiny;
         break;
       default:
@@ -46,41 +42,11 @@ class ShipCore extends React.Component {
     return { resources: shipyard, name: shipyardTitle };
   };
 
-  handleDisplayChange = event => {
-    const target = event.target;
-    const id = target.id;
-
-    const value =
-      this.state[id] === "materials-table" ? "hide-table" : "materials-table";
-
-    this.setState({
-      [id]: value
-    });
-  };
-
-  isChecked = (checked, matType) => {
-    // let multiplier = 1;
-    // if (this.props.multiplier) {
-    //   multiplier = this.props.multiplier;
-    // }
-
-    let resources = matType
-
-    if (!checked) {
-      this.props.addIndividualMaterials(resources);
-    } else {
-      this.props.subtractMaterialsFromTotal(resources);
-    }
-  };
-
   render() {
     const { ship } = this.props;
     let shipyard = this.getShipyard();
 
-    let hasWheel = false;
-    if (ship.shipyard !== "tinyShipyard") {
-      hasWheel = true;
-    }
+    let hasWheel = ship.shipyard !== "tinyShipyard" ? true : false;
     let deckSize = ship.decks.type;
 
     return (
@@ -89,32 +55,11 @@ class ShipCore extends React.Component {
           <tbody>
             <tr>
               <td colSpan="4" className="subTableCell">
-                <Materials
-                  resources={ship.resources}
-                  display={this.props.rigDisplay}
-                  parent={"Rig"}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td
-                id="shipyardDisplay"
-                className={`Cell left-cell`}
-                onClick={this.handleDisplayChange}
-              >
-                Shipyard
-              </td>
-              <td className={`Cell middle-cell`}>{shipyard.name}</td>
-              <td className={`Cell right-cell`}>
-                <Checkbox isChecked={this.isChecked} matType={shipyard.resources} />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="4" className="subTableCell">
-                <Materials
+                <ItemRowTable
+                  quantity={1}
                   resources={shipyard.resources}
-                  display={this.state.shipyardDisplay}
-                  parent={"Shipyard"}
+                  type={shipyard.name}
+                  name={"Shipyard"}
                 />
               </td>
             </tr>
@@ -124,49 +69,21 @@ class ShipCore extends React.Component {
                   <table className="Table">
                     <tbody>
                       <tr>
-                        <td
-                          id="steeringWheelDisplay"
-                          className={`Cell left-cell`}
-                          onClick={this.handleDisplayChange}
-                        >
-                          Steering Wheel
-                        </td>
-                        <td className={`Cell middle-cell`}>1</td>
-                        <td className={`Cell right-cell`}>
-                          <Checkbox />
-                        </td>
-                      </tr>
-                      <tr>
                         <td colSpan="4" className="subTableCell">
-                          <Materials
+                          <ItemRowTable
+                            quantity={1}
                             resources={steeringWheel}
-                            display={this.state.steeringWheelDisplay}
-                            parent={"Steering Wheel"}
+                            name={"Steering Wheel"}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td
-                          id="decksDisplay"
-                          className={`Cell left-cell`}
-                          onClick={this.handleDisplayChange}
-                        >
-                          Decks ({deckSize})
-                        </td>
-                        <td className={`Cell middle-cell`}>
-                          {ship.decks.quantity}
-                        </td>
-                        <td className={`Cell right-cell`}>
-                          <Checkbox />
-                        </td>
-                      </tr>
-                      <tr>
                         <td colSpan="4" className="subTableCell">
-                          <Materials
+                          <ItemRowTable
+                            quantity={ship.decks.quantity}
                             resources={deckData[deckSize]}
-                            display={this.state.decksDisplay}
-                            multiplier={ship.decks.quantity}
-                            parent={"Decks"}
+                            type={deckSize}
+                            name={"Decks"}
                           />
                         </td>
                       </tr>

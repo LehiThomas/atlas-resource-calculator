@@ -10,6 +10,17 @@ export default class Checkbox extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.isItemChecked !== this.props.isItemChecked) {
+      if (this.props.isItemChecked !== this.state.isChecked) {
+        this.setState({
+          isChecked: this.props.isItemChecked
+        });
+        this.props.isChecked(this.props.isItemChecked, this.props.matType);
+      }
+    }
+  }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.checked;

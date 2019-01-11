@@ -1,12 +1,15 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import "./Planks.css";
+import "./PlanksGunports.css";
 
-import Checkbox from "../Checkbox/Checkbox";
 import ItemRowTable from "../ItemRowTable/ItemRowTable";
 
+import { plankData } from "../../constants/plankConstants";
+import { gunportData } from "../../constants/gunportConstants";
+
 import { addMaterials, subtractMaterials } from "../../redux/actions";
-class Planks extends React.Component {
+
+class PlanksGunports extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,9 +17,6 @@ class Planks extends React.Component {
 
   render() {
     let { ship } = this.props;
-
-    let plankSize = ship.planks.type;
-    let gunSize = ship.gunports.type;
 
     return (
       <div className="shipcore-table">
@@ -27,25 +27,21 @@ class Planks extends React.Component {
               <td colSpan="4" className="subTableCell">
                 <ItemRowTable
                   quantity={ship.planks.quantity}
-                  resources={ship.resources}
-                  display={this.state.shipyardDisplay}
+                  resources={plankData[ship.planks.type]}
+                  type={ship.planks.type}
                   name={"Planks"}
                 />
               </td>
             </tr>
-            <tr>
-              <td className={`Cell left-cell`}>Planks ({plankSize})</td>
-              <td className={`Cell middle-cell`}>{ship.planks.quantity}</td>
-              <td className={`Cell right-cell`}>
-                <Checkbox />
-              </td>
-            </tr>
-            {gunSize !== "none" && (
+            {ship.gunports.type !== "none" && (
               <tr>
-                <td className={`Cell left-cell`}>Gunports ({gunSize})</td>
-                <td className={`Cell middle-cell`}>0</td>
-                <td className={`Cell right-cell`}>
-                  <Checkbox />
+                <td colSpan="4" className="subTableCell">
+                  <ItemRowTable
+                    quantity={ship.gunports.quantity}
+                    resources={gunportData[ship.gunports.type]}
+                    type={ship.gunports.type}
+                    name={"Gunports"}
+                  />
                 </td>
               </tr>
             )}
@@ -69,4 +65,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Planks);
+)(PlanksGunports);
