@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./Input.css";
 
 export default class Input extends React.Component {
   constructor(props) {
@@ -10,26 +11,22 @@ export default class Input extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.isItemChecked !== this.props.isItemChecked) {
-  //     if (this.props.isItemChecked !== this.state.isChecked) {
-  //       this.setState({
-  //         isChecked: this.props.isItemChecked
-  //       });
-  //       this.props.isChecked(this.props.isItemChecked, this.props.matType);
-  //     }
-  //   }
-  // }
-
   handleInputChange(event) {
     this.setState({ value: event.target.value });
-    this.props.setInputValue(event.target.value)
+    this.props.setInputValue(parseInt(event.target.value));
   }
 
   render() {
     return (
       <form>
-        <input className="input-field" type="text" value={this.state.value} onChange={this.handleInputChange} />
+        <input
+          type="number"
+          className="input-field"
+          value={this.state.value}
+          onChange={this.handleInputChange}
+          min={0}
+          max={this.props.max}
+        />
       </form>
     );
   }

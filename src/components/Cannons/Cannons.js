@@ -11,32 +11,61 @@ import { addMaterials, subtractMaterials } from "../../redux/actions";
 class Cannons extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      large: 0,
+      medium: 0
+    };
   }
+
+  setCannonValue = (value, name) => {
+    if (name === "Cannons Medium") {
+      this.setState({ medium: value });
+    } else if (name === "Cannons Large") {
+      this.setState({ large: value });
+    }
+  };
+
+  getCannonMax = availableGunports => {
+    const { medium, large } = this.state;
+    let max = availableGunports - medium - large;
+    return max;
+  };
 
   render() {
     let { ship } = this.props;
 
+    let availableGunports = ship.availableGunports ? ship.availableGunports : 0;
+
+    let style = "";
+    let cannons = parseInt(this.state.medium) + parseInt(this.state.large);
+    if (cannons > availableGunports) {
+      style = "red-title";
+    }
+
     return (
       <div className="shipcore-table">
-        <h4>Available Gunports - 0</h4>
+        <h4 className={style}>Available Gunports - {availableGunports}</h4>
         <table className="Table">
           <tbody>
             <tr>
               <td colSpan="4" className="subTableCell">
                 <ItemRowTable
-                  quantity={1}
+                  quantity={this.state.medium}
                   resources={cannonData.medium}
                   name={"Cannons Medium"}
+                  setInputValue={this.setCannonValue}
+                  max={this.getCannonMax(availableGunports) + this.state.medium}
                 />
               </td>
             </tr>
             <tr>
               <td colSpan="4" className="subTableCell">
                 <ItemRowTable
-                  quantity={1}
+                  quantity={this.state.large}
                   resources={cannonData.large}
                   name={"Cannons Large"}
+                  setInputValue={this.setCannonValue}
+                  max={this.getCannonMax(availableGunports) + this.state.large}
                 />
               </td>
             </tr>

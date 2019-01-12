@@ -26,7 +26,10 @@ class ItemRowTable extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.resources !== this.props.resources) {
+    if (
+      prevProps.resources !== this.props.resources ||
+      prevProps.quantity !== this.props.quantity
+    ) {
       this.props.addMaterialsToTotal(this.props.resources, this.props.quantity);
     }
   }
@@ -44,7 +47,7 @@ class ItemRowTable extends React.Component {
   };
 
   getQuantity = () => {
-    if (this.props.quantity) {
+    if (!isNaN(this.props.quantity)) {
       return this.props.quantity;
     } else {
       return 1;
@@ -71,7 +74,6 @@ class ItemRowTable extends React.Component {
 
   renderRow = (key, numberOfMats) => {
     let multiplier = this.getQuantity();
-
     return (
       <tr key={key}>
         <td className={`Cell left-row-cell`}>{key} </td>
@@ -96,11 +98,25 @@ class ItemRowTable extends React.Component {
   };
 
   setInputValue = value => {
-    this.props.setInputValue(value);
-  }
+    this.props.setInputValue(value, this.props.name);
+  };
+
+  setMiddleCell = name => {
+    if (name === "Rig") {
+      return <Dropdown setShip={this.setShipFromDropdown} />;
+    } else if (
+      name === "Gunports" ||
+      name.includes("Sails") ||
+      name.includes("Cannons")
+    ) {
+      return <Input max={this.props.max} setInputValue={this.setInputValue} />;
+    } else {
+      return this.props.quantity;
+    }
+  };
 
   render() {
-    const { resources, type, name, quantity } = this.props;
+    const { resources, type, name } = this.props;
     const keys = this.getKeys();
 
     let materialRows = keys.map(key => {
@@ -113,15 +129,7 @@ class ItemRowTable extends React.Component {
       itemName = `${name} (${type})`;
     }
 
-    let middleCell;
-    if (name === "Rig") {
-      middleCell = (<Dropdown setShip={this.setShipFromDropdown} />)
-    } else if (name === "Gunports") {
-      middleCell = (<Input setInputValue={this.setInputValue} />)
-    }
-    else {
-      middleCell = quantity;
-    }
+    let middleCell = this.setMiddleCell(name);
 
     return (
       <div className="row-table">
