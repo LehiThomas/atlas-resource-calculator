@@ -4,6 +4,7 @@ import "./ItemRowTable.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 import Dropdown from "../Dropdown/Dropdown";
+import Input from "../Input/Input";
 
 import {
   addMaterials,
@@ -94,6 +95,10 @@ class ItemRowTable extends React.Component {
     }
   };
 
+  setInputValue = value => {
+    this.props.setInputValue(value);
+  }
+
   render() {
     const { resources, type, name, quantity } = this.props;
     const keys = this.getKeys();
@@ -108,12 +113,15 @@ class ItemRowTable extends React.Component {
       itemName = `${name} (${type})`;
     }
 
-    let middleCell =
-      name === "Rig" ? (
-        <Dropdown setShip={this.setShipFromDropdown} />
-      ) : (
-        quantity
-      );
+    let middleCell;
+    if (name === "Rig") {
+      middleCell = (<Dropdown setShip={this.setShipFromDropdown} />)
+    } else if (name === "Gunports") {
+      middleCell = (<Input setInputValue={this.setInputValue} />)
+    }
+    else {
+      middleCell = quantity;
+    }
 
     return (
       <div className="row-table">
