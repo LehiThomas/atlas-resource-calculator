@@ -1,0 +1,16 @@
+.row-table {
+  float: right;
+  display: table;
+}
+
+.hide-table {
+  display: none;
+}
+
+.left-row-cell {
+  width: 130px;
+}
+
+.empty-cell {
+  width: 20px;
+}

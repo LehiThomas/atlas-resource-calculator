@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
-import Dropdown from "./components/Dropdown/Dropdown";
-import Checkbox from "./components/Checkbox/Checkbox";
+import SailPoints from "./components/SailPoints/SailPoints";
+import Cannons from "./components/Cannons/Cannons";
 import ShipCore from "./components/ShipCore/ShipCore";
-import Planks from "./components/Planks/Planks";
+import PlanksGunports from "./components/PlanksGunports/PlanksGunports";
 import AllResources from "./components/AllResources/AllResources";
+import Ceilings from "./components/Ceilings/Ceilings";
+import ItemRowTable from "./components/ItemRowTable/ItemRowTable";
 
 import resources from "./resources.json";
 
@@ -17,8 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       ship: "",
-      isShipSet: false,
-      rigDisplay: "materials-table"
+      isShipSet: false
     };
   }
 
@@ -44,6 +45,8 @@ class App extends Component {
   };
 
   render() {
+    const { ship } = this.props;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -54,37 +57,29 @@ class App extends Component {
           <table className="Table">
             <tbody>
               <tr>
-                <td
-                  id="rigDisplay"
-                  className={`Cell left-cell`}
-                  onClick={this.handleDisplayChange}
-                >
-                  Rig
-                </td>
-                <td className={`Cell middle-cell`}>
-                  <Dropdown setShip={this.setShipFromDropdown} />
-                </td>
-                <td className={`Cell right-cell`}>
-                  <Checkbox />
+                <td colSpan="4" className="subTableCell">
+                  <ItemRowTable
+                    resources={ship.resources}
+                    name={"Rig"}
+                    setShip={this.setShipFromDropdown}
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        {
-          this.state.isShipSet && (
-            <div>
-              <div className="shipcore-table">
-                <ShipCore rigDisplay={this.state.rigDisplay} />
-              </div>
-              {/* <Planks /> */}
+        {this.state.isShipSet && (
+          <div>
+            <div className="shipcore-table">
+              <ShipCore rigDisplay={this.state.rigDisplay} />
             </div>
-          )}
-        {
-          this.props.mats && (
-            <AllResources />
-          )
-        }
+            {ship.planks.quantity > 0 && <PlanksGunports />}
+            {ship.sailUnits > 0 && <SailPoints />}
+            {ship.gunports.quantity > 0 && <Cannons />}
+            {ship.ceilings > 0 && <Ceilings />}
+          </div>
+        )}
+        {this.props.mats && <AllResources />}
       </div>
     );
   }

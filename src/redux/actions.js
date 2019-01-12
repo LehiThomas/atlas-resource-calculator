@@ -3,7 +3,8 @@ import {
   SET_SHIP,
   SUBTRACT_MATERIALS,
   ADD_MATERIALS_FROM_CHECKBOX,
-  RESET
+  RESET,
+  UPDATE_GUNPORTS
 } from "./consts";
 
 export const addMaterials = (resources, multiplier = 1) => {
@@ -38,5 +39,12 @@ export const setShip = ship => {
   return {
     type: SET_SHIP,
     ship
+  };
+};
+
+export const updateAvailableGunports = gunports => {
+  return {
+    type: UPDATE_GUNPORTS,
+    gunports: parseInt(gunports)
   };
 };

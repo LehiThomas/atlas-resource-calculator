@@ -4,3 +4,5 @@ export const SUBTRACT_MATERIALS = "SUBTRACT_MATERIALS";
 
 export const RESET = "RESET";
 export const SET_SHIP = "SET_SHIP";
+
+export const UPDATE_GUNPORTS = "UPDATE_GUNPORTS";

@@ -1,25 +1,18 @@
-import { SET_SHIP } from "../consts";
+import { SET_SHIP, UPDATE_GUNPORTS } from "../consts";
 
 const initialState = {};
 
 const shipReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case RESET:
-    //   return {
-    //     ...initialState
-    //   };
     case SET_SHIP:
       return {
         ...action.ship
       };
-    // case ADD_MATERIALS_FROM_CHECKBOX:
-    //   return {
-    //     ...addMatsFromCheckbox(resources, state)
-    //   };
-    // case SUBTRACT_MATERIALS:
-    //   return {
-    //     ...subtractMats(resources, state)
-    //   };
+    case UPDATE_GUNPORTS:
+      return {
+        ...state,
+        availableGunports: action.gunports
+      };
     default:
       return state;
   }

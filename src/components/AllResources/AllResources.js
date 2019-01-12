@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import "./AllResources.css";
 
-
 class AllResources extends React.Component {
   render() {
     let { mats } = this.props;
@@ -16,6 +15,7 @@ class AllResources extends React.Component {
             <tr>
               <td className={`Cell left-cell`}>Wood</td>
               <td className={`Cell middle-cell`}>{mats.wood}</td>
+              <td className={`Cell right-allResources-cell`} />
             </tr>
             <tr>
               <td className={`Cell left-cell`}>Thatch</td>
@@ -41,11 +41,6 @@ class AllResources extends React.Component {
               <td className={`Cell left-cell`}>Coal</td>
               <td className={`Cell middle-cell`}>{mats.coal}</td>
             </tr>
-            <tr>
-              <td className={`Cell left-cell`}>Ingot</td>
-              <td className={`Cell middle-cell`}>{mats.ingot}</td>
-              <td className={`Cell right-allResources-cell`} />
-            </tr>
           </tbody>
         </table>
       </div>
@@ -57,6 +52,4 @@ const mapStateToProps = state => ({
   mats: state.materialsReducer
 });
 
-export default connect(
-  mapStateToProps
-)(AllResources);
+export default connect(mapStateToProps)(AllResources);
