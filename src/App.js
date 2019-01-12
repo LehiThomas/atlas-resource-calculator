@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
-<<<<<<< HEAD
 import SailPoints from "./components/SailPoints/SailPoints";
 import Cannons from "./components/Cannons/Cannons";
-=======
->>>>>>> f2fb42074e14efe974f0c2892bcb0b3bfbeee4d7
 import ShipCore from "./components/ShipCore/ShipCore";
 import PlanksGunports from "./components/PlanksGunports/PlanksGunports";
 import AllResources from "./components/AllResources/AllResources";
