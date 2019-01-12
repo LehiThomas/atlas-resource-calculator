@@ -9,23 +9,30 @@ import { ceilingData } from "../../constants/ceilingConstants";
 class Ceilings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      ceilings: 0
+    };
   }
+
+  setCeilingsValue = value => {
+    this.setState({ ceilings: value });
+  };
 
   render() {
     let { ship } = this.props;
 
     return (
       <div className="shipcore-table">
-        <h4>Max Ceilings - {ship.ceilings}</h4>
+        <h4>Ceilings</h4>
         <table className="Table">
           <tbody>
             <tr>
               <td colSpan="4" className="subTableCell">
                 <ItemRowTable
-                  quantity={1}
+                  quantity={this.state.ceilings}
                   resources={ceilingData}
                   name={"Ceilings"}
+                  setInputValue={this.setCeilingsValue}
                 />
               </td>
             </tr>

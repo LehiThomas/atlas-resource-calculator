@@ -102,13 +102,10 @@ class ItemRowTable extends React.Component {
   };
 
   setMiddleCell = name => {
+    let conditions = ["Gunports", "Sails", "Cannons", "Ceilings"];
     if (name === "Rig") {
       return <Dropdown setShip={this.setShipFromDropdown} />;
-    } else if (
-      name === "Gunports" ||
-      name.includes("Sails") ||
-      name.includes("Cannons")
-    ) {
+    } else if (conditions.some(el => name.includes(el))) {
       return <Input max={this.props.max} setInputValue={this.setInputValue} />;
     } else {
       return this.props.quantity;

@@ -76,7 +76,7 @@ class App extends Component {
             {ship.planks.quantity > 0 && <PlanksGunports />}
             {ship.sailUnits > 0 && <SailPoints />}
             {ship.gunports.quantity > 0 && <Cannons />}
-            {ship.ceilings > 0 && <Ceilings />}
+            {ship.gunports.quantity > 0 && <Ceilings />}
           </div>
         )}
         {this.props.mats && <AllResources />}
