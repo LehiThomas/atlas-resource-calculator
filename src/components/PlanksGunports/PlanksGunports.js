@@ -17,6 +17,12 @@ class PlanksGunports extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ gunports: 0 });
+    }
+  }
+
   setGunportValue = value => {
     this.setState({ gunports: value });
     this.props.updateGunports(value);

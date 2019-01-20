@@ -1,7 +1,9 @@
 import * as React from "react";
+import { connect } from "react-redux";
+
 import "./Input.css";
 
-export default class Input extends React.Component {
+class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +11,12 @@ export default class Input extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ value: 0 });
+    }
   }
 
   handleInputChange(event) {
@@ -31,3 +39,9 @@ export default class Input extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  ship: state.shipReducer
+});
+
+export default connect(mapStateToProps)(Input);

@@ -17,6 +17,12 @@ class Cannons extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ large: 0, medium: 0 });
+    }
+  }
+
   setCannonValue = (value, name) => {
     if (name === "Cannons Medium") {
       this.setState({ medium: value });

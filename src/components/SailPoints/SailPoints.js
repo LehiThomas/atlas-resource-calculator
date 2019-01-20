@@ -18,6 +18,12 @@ class SailPoints extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ sailPoints: 0, small: 0, medium: 0, large: 0 });
+    }
+  }
+
   setSailUnits = (value, name) => {
     let { small, large, medium } = this.state;
     let size, sailPoints;

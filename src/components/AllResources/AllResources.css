@@ -2,3 +2,9 @@
   width: 30px;
   border: none;
 }
+
+.all-resources-table {
+  position: fixed;
+  right: 0;
+  top: 150px;
+}

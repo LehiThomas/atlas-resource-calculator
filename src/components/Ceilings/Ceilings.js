@@ -14,6 +14,12 @@ class Ceilings extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ ceilings: 0 });
+    }
+  }
+
   setCeilingsValue = value => {
     this.setState({ ceilings: value });
   };

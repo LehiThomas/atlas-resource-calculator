@@ -8,7 +8,7 @@ class AllResources extends React.Component {
     let { mats } = this.props;
 
     return (
-      <div className="shipcore-table">
+      <div className={`shipcore-table all-resources-table`}>
         <h4>All Resources</h4>
         <table className="Table">
           <tbody>

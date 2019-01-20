@@ -127,6 +127,9 @@ class ItemRowTable extends React.Component {
     }
 
     let middleCell = this.setMiddleCell(name);
+    let middleCellStyle = this.state.itemCheck
+      ? "Cell middle-cell checked"
+      : "Cell middle-cell";
 
     return (
       <div className="row-table">
@@ -136,7 +139,7 @@ class ItemRowTable extends React.Component {
               <td onClick={this.toggleMats} className={`Cell left-cell`}>
                 {itemName}
               </td>
-              <td className={`Cell middle-cell`}>{middleCell}</td>
+              <td className={middleCellStyle}>{middleCell}</td>
               <td className={`Cell right-cell`}>
                 <Checkbox isChecked={this.isItemChecked} />
               </td>
