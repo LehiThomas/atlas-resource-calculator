@@ -4,6 +4,7 @@ import "./ItemRowTable.css";
 
 import Checkbox from "../Checkbox/Checkbox";
 import Dropdown from "../Dropdown/Dropdown";
+import MaterialRow from "../MaterialRow/MaterialRow";
 import Input from "../Input/Input";
 
 import {
@@ -26,8 +27,12 @@ class ItemRowTable extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ itemCheck: false });
+    }
+
     if (
-      prevProps.resources !== this.props.resources ||
+      prevProps.ship.id !== this.props.ship.id ||
       prevProps.quantity !== this.props.quantity
     ) {
       this.props.addMaterialsToTotal(this.props.resources, this.props.quantity);
@@ -54,39 +59,30 @@ class ItemRowTable extends React.Component {
     }
   };
 
-  isMatChecked = (checked, matType) => {
-    let multiplier = this.getQuantity();
-
-    let resource = { [matType]: this.props.resources[matType] * multiplier };
-
-    if (!checked) {
-      this.props.addIndividualMaterials(resource);
-    } else {
-      this.props.subtractMaterialsFromTotal(resource);
-    }
-  };
-
   isItemChecked = checked => {
     this.setState({ showMats: true }, () => {
       this.setState({ itemCheck: checked });
     });
   };
 
-  renderRow = (key, numberOfMats) => {
+  renderRow = () => {
+    const { resources } = this.props;
     let multiplier = this.getQuantity();
-    return (
-      <tr key={key}>
-        <td className={`Cell left-row-cell`}>{key} </td>
-        <td className={`Cell middle-cell`}>{numberOfMats * multiplier}</td>
-        <td className={`Cell right-cell`}>
-          <Checkbox
-            matType={key}
-            isChecked={this.isMatChecked}
-            isItemChecked={this.state.itemCheck}
-          />
-        </td>
-      </tr>
-    );
+    const keys = this.getKeys();
+
+    return keys.map(key => {
+      let numberOfMats = resources[key];
+      return (
+        <MaterialRow
+          key={key}
+          matType={key}
+          numberOfMats={numberOfMats}
+          multiplier={multiplier}
+          isChecked={this.isMatChecked}
+          isItemChecked={this.state.itemCheck}
+        />
+      );
+    });
   };
 
   getKeys = resources => {
@@ -113,13 +109,9 @@ class ItemRowTable extends React.Component {
   };
 
   render() {
-    const { resources, type, name } = this.props;
-    const keys = this.getKeys();
+    const { type, name } = this.props;
 
-    let materialRows = keys.map(key => {
-      let numberOfMats = resources[key];
-      return this.renderRow(key, numberOfMats);
-    });
+    let materialRows = this.renderRow();
 
     let itemName = name;
     if (type) {
@@ -141,7 +133,10 @@ class ItemRowTable extends React.Component {
               </td>
               <td className={middleCellStyle}>{middleCell}</td>
               <td className={`Cell right-cell`}>
-                <Checkbox isChecked={this.isItemChecked} />
+                <Checkbox
+                  isChecked={this.isItemChecked}
+                  isItemChecked={this.state.itemCheck}
+                />
               </td>
             </tr>
             {this.state.showMats && (
@@ -166,11 +161,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addMaterialsToTotal: (resources, multiplier) =>
-    dispatch(addMaterials(resources, multiplier)),
-  subtractMaterialsFromTotal: resources =>
-    dispatch(subtractMaterials(resources)),
-  addIndividualMaterials: resources =>
-    dispatch(addMaterialsFromCheckbox(resources))
+    dispatch(addMaterials(resources, multiplier))
 });
 
 export default connect(
