@@ -4,7 +4,8 @@
 }
 
 .all-resources-table {
-  position: fixed;
-  right: 0;
-  top: 150px;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
 }

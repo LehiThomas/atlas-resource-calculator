@@ -11,6 +11,12 @@
   color: white;
 }
 
+.tables {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .shipcore-table {
   display: flex;
   flex-direction: column;

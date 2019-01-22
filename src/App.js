@@ -52,34 +52,38 @@ class App extends Component {
         <header className="App-header">
           <h2>Atlas Shipwright's Resource Calculator!</h2>
         </header>
-        <div className="shipcore-table">
-          <h4>Ship Core</h4>
-          <table className="Table">
-            <tbody>
-              <tr>
-                <td colSpan="4" className="subTableCell">
-                  <ItemRowTable
-                    resources={ship.resources}
-                    name={"Rig"}
-                    setShip={this.setShipFromDropdown}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        {this.state.isShipSet && (
+        <div className="tables">
           <div>
             <div className="shipcore-table">
-              <ShipCore rigDisplay={this.state.rigDisplay} />
+              <h4>Ship Core</h4>
+              <table className="Table">
+                <tbody>
+                  <tr>
+                    <td colSpan="4" className="subTableCell">
+                      <ItemRowTable
+                        resources={ship.resources}
+                        name={"Rig"}
+                        setShip={this.setShipFromDropdown}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            {ship.planks.quantity > 0 && <PlanksGunports />}
-            {ship.sailUnits > 0 && <SailPoints />}
-            {ship.gunports.quantity > 0 && <Cannons />}
-            {ship.gunports.quantity > 0 && <Ceilings />}
+            {this.state.isShipSet && (
+              <div>
+                <div className="shipcore-table">
+                  <ShipCore rigDisplay={this.state.rigDisplay} />
+                </div>
+                {ship.planks.quantity > 0 && <PlanksGunports />}
+                {ship.sailUnits > 0 && <SailPoints />}
+                {ship.gunports.quantity > 0 && <Cannons />}
+                {ship.gunports.quantity > 0 && <Ceilings />}
+              </div>
+            )}
           </div>
-        )}
-        {this.props.mats && <AllResources />}
+          {this.props.mats && <AllResources />}
+        </div>
       </div>
     );
   }
