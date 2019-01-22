@@ -1,5 +1,5 @@
 .right-allResources-cell {
-  width: 30px;
+  width: 0px;
   border: none;
 }
 
@@ -8,4 +8,10 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
+  text-align: center;
+}
+
+.all-resources-table > .left-cell {
+  width: 120px;
+  text-align: center;
 }

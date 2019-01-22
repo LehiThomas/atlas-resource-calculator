@@ -27,7 +27,7 @@ class Dropdown extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           <select value={this.state.value} onChange={this.handleChange}>
-            <option value="">Ship</option>
+            <option value="" disabled>Ship</option>
             <option value="RAFT">Raft</option>
             <option value="DINGHY">Dinghy</option>
             <option value="SLOOP">Sloop</option>

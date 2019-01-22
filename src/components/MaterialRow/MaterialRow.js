@@ -62,6 +62,7 @@ class MaterialRow extends React.Component {
             matType={matType}
             isChecked={this.isMatChecked}
             isItemChecked={isItemChecked}
+            isMatChecked={this.state.itemCheck}
           />
         </td>
       </tr>

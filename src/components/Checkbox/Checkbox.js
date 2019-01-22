@@ -12,6 +12,9 @@ class Checkbox extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.ship.id !== this.props.ship.id) {
+      this.setState({ isChecked: false });
+    }
     if (prevProps.isItemChecked !== this.props.isItemChecked) {
       if (this.props.isItemChecked !== this.state.isChecked) {
         this.setState({
